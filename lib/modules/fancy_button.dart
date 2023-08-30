@@ -6,15 +6,10 @@ class FancyButton extends StatelessWidget {
   final Function onPress;
   final LinearGradient gradient;
 
-  FancyButton({this.label, this.onPress, this.gradient});
+  FancyButton({required this.label, required this.onPress, required this.gradient});
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color: Colors.white, width: 2.0),
-      ),
-      padding: const EdgeInsets.all(0.0),
+    return ElevatedButton(
       child: Ink(
         decoration: BoxDecoration(
           gradient: gradient,

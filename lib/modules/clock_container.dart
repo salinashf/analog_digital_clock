@@ -4,7 +4,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 class ClockContainer extends StatelessWidget {
   final Widget child;
 
-  ClockContainer({this.child});
+  ClockContainer({required this.child});
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -19,7 +19,7 @@ class ClockContainer extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey[300],
+                  color: Colors.grey,
                   offset: Offset(4.0, 4.0),
                   blurRadius: 5.0,
                   spreadRadius: 0.5,
@@ -43,7 +43,7 @@ class ClockContainer extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey[400],
+                  color: Colors.grey,
                   offset: Offset(4.0, 4.0),
                   blurRadius: 5.0,
                   spreadRadius: 1.0,
@@ -67,7 +67,7 @@ class ClockContainer extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey[400],
+                  color: Colors.grey,
                   offset: Offset(4.0, 4.0),
                   blurRadius: 5.0,
                   spreadRadius: 1.0,

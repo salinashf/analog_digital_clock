@@ -25,7 +25,7 @@ class ClockPageState extends State<ClockPage> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
   String locationName = "";
   String _formattedTime = '';
-  String worldTime;
+  late String worldTime;
   Choice choice = Choice.CurrentTime;
 
   String getTextLocationName(String location) {
@@ -79,7 +79,7 @@ class ClockPageState extends State<ClockPage> {
       return null;
     }
     Response response =
-        await get("http://worldtimeapi.org/api/timezone/$locationName");
+        await get("http://worldtimeapi.org/api/timezone/$locationName" as Uri);
     Map worldData = jsonDecode(response.body);
     final String worldTimeString = worldData['datetime'];
     worldTime = worldTimeString.substring(11, 16);

@@ -3,7 +3,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class LocationList extends StatefulWidget {
   final String selectedLocation;
-  LocationList({this.selectedLocation});
+  LocationList({required this.selectedLocation});
 
   @override
   _LocationListState createState() => _LocationListState();

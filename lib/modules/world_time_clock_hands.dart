@@ -8,7 +8,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class WorldTimeClockHands extends StatefulWidget {
   final String worldLocation;
-  WorldTimeClockHands({this.worldLocation});
+  WorldTimeClockHands({ required this.worldLocation});
 
   @override
   _WorldTimeClockHandsState createState() => _WorldTimeClockHandsState();
@@ -17,7 +17,7 @@ class WorldTimeClockHands extends StatefulWidget {
 int worldHours = 0, worldMinutes = 0, worldSeconds = 0;
 
 class _WorldTimeClockHandsState extends State<WorldTimeClockHands> {
-  Timer timer;
+  late Timer timer;
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _WorldTimeClockHandsState extends State<WorldTimeClockHands> {
 
   void getWorldTime() async {
     final Response response = await get(
-        "http://worldtimeapi.org/api/timezone/${widget.worldLocation}");
+        "http://worldtimeapi.org/api/timezone/${widget.worldLocation}" as Uri);
     print('${widget.worldLocation}');
     Map worldData = jsonDecode(response.body);
     String worldTimeString = worldData['datetime'];
