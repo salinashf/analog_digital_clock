@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 const int purple = 0xff3c1361;
 const int red = 0xffff2525;

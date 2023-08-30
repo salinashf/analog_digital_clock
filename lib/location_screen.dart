@@ -3,7 +3,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class LocationList extends StatefulWidget {
   final String selectedLocation;
-  LocationList({required this.selectedLocation});
+  const LocationList({super.key, required this.selectedLocation});
 
   @override
   _LocationListState createState() => _LocationListState();
@@ -14,7 +14,7 @@ class _LocationListState extends State<LocationList> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(silver),
+        backgroundColor: const Color(silver),
         body: Padding(
           padding: const EdgeInsets.only(top: 50.0),
           child: Center(

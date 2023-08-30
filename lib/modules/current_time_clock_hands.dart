@@ -19,7 +19,7 @@ class CurrentTimeClockHands extends CustomPainter {
         (size.width / 1 - 110) * sin(Vector.radians(secondsDegree));
 
     final secondsP2 = Offset(x, y);
-    paint.color = Color(red);
+    paint.color = const Color(red);
     paint.strokeWidth = 4;
     canvas.drawLine(secondsP1, secondsP2, paint);
 
@@ -31,7 +31,7 @@ class CurrentTimeClockHands extends CustomPainter {
         (size.width / 1 - 80) * sin(Vector.radians(minutesDegree));
 
     final minutesP2 = Offset(x, y);
-    paint.color = Color(purple);
+    paint.color = const Color(purple);
     paint.strokeWidth = 4;
     canvas.drawLine(minutesP1, minutesP2, paint);
 
@@ -43,7 +43,7 @@ class CurrentTimeClockHands extends CustomPainter {
         (size.width / 3 - 50) * sin(Vector.radians(hoursDegree));
 
     final hoursP2 = Offset(x, y);
-    paint.color = Color(yellow);
+    paint.color = const Color(yellow);
     paint.strokeWidth = 4;
     canvas.drawLine(hoursP1, hoursP2, paint);
 

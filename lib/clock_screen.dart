@@ -18,12 +18,14 @@ import 'location_screen.dart';
 enum Choice { WorldTime, CurrentTime }
 
 class ClockPage extends StatefulWidget {
+  const ClockPage({super.key});
+
   @override
   ClockPageState createState() => ClockPageState();
 }
 
 class ClockPageState extends State<ClockPage> {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   String locationName = "";
   String _formattedTime = '';
   late String worldTime;
@@ -34,8 +36,9 @@ class ClockPageState extends State<ClockPage> {
       List<String> newLoc;
       newLoc = location.split('/');
       return newLoc[newLoc.length - 1];
-    } else
+    } else {
       return location;
+    }
   }
 
   @override
@@ -43,7 +46,7 @@ class ClockPageState extends State<ClockPage> {
     setInitialLocation();
 //    _getLocationFromSharedPref();
     Timer.periodic(
-        Duration(seconds: 1),
+        const Duration(seconds: 1),
         (Timer t) =>
             choice == Choice.CurrentTime ? _getTime() : getWorldTime());
     super.initState();
@@ -67,7 +70,7 @@ class ClockPageState extends State<ClockPage> {
 
   void _getTime() {
     String formattedDateTime = DateFormat("hh:mm a").format(DateTime.now());
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         _formattedTime = formattedDateTime;
       });
@@ -85,7 +88,7 @@ class ClockPageState extends State<ClockPage> {
     Map worldData = jsonDecode(response.body);
     final String worldTimeString = worldData['datetime'];
     worldTime = worldTimeString.substring(11, 16);
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         int meridian = int.parse(worldTime.substring(0, 2));
         if (meridian == 24) {
@@ -115,10 +118,10 @@ class ClockPageState extends State<ClockPage> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        backgroundColor: Color(silver),
+        backgroundColor: const Color(silver),
         body: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             TopRow(
@@ -140,16 +143,16 @@ class ClockPageState extends State<ClockPage> {
             ),
             Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
                 child: Container(
                   child: Text(
-                    "$_formattedTime",
+                    _formattedTime,
                     style: kTimeTextStyle,
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Center(
@@ -163,7 +166,7 @@ class ClockPageState extends State<ClockPage> {
                       ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
             Row(
@@ -172,12 +175,11 @@ class ClockPageState extends State<ClockPage> {
                 FancyButton(
                   onPress: () async {
                     if (await InternetConnectionChecker().hasConnection == true) {
-                      print('Has a Internet Connection');
                       choice = Choice.WorldTime;
                     } else {
                       choice = Choice.CurrentTime;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           duration: Duration(seconds: 3),
                           content: Text(
                             "No Internet Connection",

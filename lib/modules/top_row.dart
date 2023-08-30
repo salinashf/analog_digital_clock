@@ -4,19 +4,19 @@ import 'package:analog_digital_clock/constants/constants.dart';
 class TopRow extends StatelessWidget {
   final String title;
   var  onPress;
-  TopRow({required this.title, required this.onPress});
+  TopRow({super.key, required this.title, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color(silver),
+      color: const Color(silver),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Ink(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: kInActiveButtonGradient,
                 borderRadius: BorderRadius.all(
                   Radius.circular(10.0),
@@ -31,7 +31,7 @@ class TopRow extends StatelessWidget {
                 ),
                 child: IconButton(
                   onPressed: onPress,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.drag_handle,
                     color: Color(purple),
                   ),
@@ -39,7 +39,7 @@ class TopRow extends StatelessWidget {
               ),
             ),
             Text(
-              "$title",
+              title,
               style: kTopRowTextStyle,
             ),
           ],

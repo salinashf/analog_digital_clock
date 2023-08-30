@@ -8,10 +8,10 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class WorldTimeClockHands extends StatefulWidget {
   final String worldLocation;
-  WorldTimeClockHands({ required this.worldLocation});
+  const WorldTimeClockHands({super.key, required this.worldLocation});
 
   @override
-  _WorldTimeClockHandsState createState() => _WorldTimeClockHandsState();
+   _WorldTimeClockHandsState createState() => _WorldTimeClockHandsState();
 }
 
 int worldHours = 0, worldMinutes = 0, worldSeconds = 0;
@@ -21,7 +21,7 @@ class _WorldTimeClockHandsState extends State<WorldTimeClockHands> {
 
   @override
   void initState() {
-    timer = Timer.periodic(Duration(seconds: 1), (Timer t) => getWorldTime());
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) => getWorldTime());
     super.initState();
   }
 
@@ -33,10 +33,8 @@ class _WorldTimeClockHandsState extends State<WorldTimeClockHands> {
 
   void getWorldTime() async {
     final Response response = await get(Uri.parse("http://worldtimeapi.org/api/timezone/${widget.worldLocation}"));
-    print('${widget.worldLocation}');
     Map worldData = jsonDecode(response.body);
     String worldTimeString = worldData['datetime'];
-    print(worldTimeString);
     worldHours = int.parse(worldTimeString.substring(11, 13));
     worldMinutes = int.parse(worldTimeString.substring(14, 16));
     worldSeconds = int.parse(worldTimeString.substring(17, 19));
@@ -59,37 +57,31 @@ class HandsPainter extends CustomPainter {
     var center = Offset((size.width / 2), (size.height / 2));
     final secondsP1 = center;
     double secondsDegree = 360 / 60 * worldSeconds;
-    double x = (size.width / 1) +
-        (size.width / 1 - 110) * cos(Vector.radians(secondsDegree));
-    double y = (size.width / 1) +
-        (size.width / 1 - 110) * sin(Vector.radians(secondsDegree));
+    double x = (size.width / 1) + (size.width / 1 - 110) * cos(Vector.radians(secondsDegree));
+    double y = (size.width / 1) + (size.width / 1 - 110) * sin(Vector.radians(secondsDegree));
 
     final secondsP2 = Offset(x, y);
-    paint.color = Color(red);
+    paint.color = const Color(red);
     paint.strokeWidth = 4;
     canvas.drawLine(secondsP1, secondsP2, paint);
 
     final minutesP1 = center;
     double minutesDegree = 360 / 60 * worldMinutes;
-    x = (size.width / 1) +
-        (size.width / 1 - 80) * cos(Vector.radians(minutesDegree));
-    y = (size.width / 1) +
-        (size.width / 1 - 80) * sin(Vector.radians(minutesDegree));
+    x = (size.width / 1) + (size.width / 1 - 80) * cos(Vector.radians(minutesDegree));
+    y = (size.width / 1) + (size.width / 1 - 80) * sin(Vector.radians(minutesDegree));
 
     final minutesP2 = Offset(x, y);
-    paint.color = Color(purple);
+    paint.color = const Color(purple);
     paint.strokeWidth = 4;
     canvas.drawLine(minutesP1, minutesP2, paint);
 
     final hoursP1 = center;
     double hoursDegree = 360 / 12 * (worldHours - 12);
-    x = (size.width / 2) +
-        (size.width / 3 - 50) * cos(Vector.radians(hoursDegree));
-    y = (size.width / 2) +
-        (size.width / 3 - 50) * sin(Vector.radians(hoursDegree));
+    x = (size.width / 2) + (size.width / 3 - 50) * cos(Vector.radians(hoursDegree));
+    y = (size.width / 2) + (size.width / 3 - 50) * sin(Vector.radians(hoursDegree));
 
     final hoursP2 = Offset(x, y);
-    paint.color = Color(yellow);
+    paint.color = const Color(yellow);
     paint.strokeWidth = 4;
     canvas.drawLine(hoursP1, hoursP2, paint);
 
@@ -105,17 +97,13 @@ class HandsPainter extends CustomPainter {
 
 //      int distance = (i%15==0)?10:15;
 
-      double x1 = (size.width / 2) +
-          (size.width / 3 + 118) * cos(Vector.radians(minute));
-      double y1 = (size.height / 2) +
-          (size.width / 3 + 118) * sin(Vector.radians(minute));
+      double x1 = (size.width / 2) + (size.width / 3 + 118) * cos(Vector.radians(minute));
+      double y1 = (size.height / 2) + (size.width / 3 + 118) * sin(Vector.radians(minute));
 
       final p1 = Offset(x1, y1);
 
-      double x2 = (size.width / 2) +
-          (size.width / 3 + 123) * cos(Vector.radians(minute));
-      double y2 = (size.height / 2) +
-          (size.width / 3 + 123) * sin(Vector.radians(minute));
+      double x2 = (size.width / 2) + (size.width / 3 + 123) * cos(Vector.radians(minute));
+      double y2 = (size.height / 2) + (size.width / 3 + 123) * sin(Vector.radians(minute));
 
       final p2 = Offset(x2, y2);
 
