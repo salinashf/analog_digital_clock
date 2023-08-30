@@ -3,7 +3,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class TopRow extends StatelessWidget {
   final String title;
-  final Function  onPress;
+  var  onPress;
   TopRow({required this.title, required this.onPress});
 
   @override

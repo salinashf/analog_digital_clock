@@ -32,8 +32,7 @@ class _WorldTimeClockHandsState extends State<WorldTimeClockHands> {
   }
 
   void getWorldTime() async {
-    final Response response = await get(
-        "http://worldtimeapi.org/api/timezone/${widget.worldLocation}" as Uri);
+    final Response response = await get(Uri.parse("http://worldtimeapi.org/api/timezone/${widget.worldLocation}"));
     print('${widget.worldLocation}');
     Map worldData = jsonDecode(response.body);
     String worldTimeString = worldData['datetime'];

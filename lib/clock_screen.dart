@@ -79,8 +79,9 @@ class ClockPageState extends State<ClockPage> {
       choice = Choice.CurrentTime;
       return null;
     }
+    Uri url = Uri.parse("http://worldtimeapi.org/api/timezone/$locationName");
     Response response =
-        await get("http://worldtimeapi.org/api/timezone/$locationName" as Uri);
+        await get(url);
     Map worldData = jsonDecode(response.body);
     final String worldTimeString = worldData['datetime'];
     worldTime = worldTimeString.substring(11, 16);

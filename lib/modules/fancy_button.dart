@@ -3,7 +3,7 @@ import 'package:analog_digital_clock/constants/constants.dart';
 
 class FancyButton extends StatelessWidget {
   final String label;
-  final Function onPress;
+  var  onPress;
   final LinearGradient gradient;
 
   FancyButton({required this.label, required this.onPress, required this.gradient});
