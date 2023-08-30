@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:http/http.dart';
 import 'dart:convert';
-import 'package:data_connection_checker/data_connection_checker.dart';
+//import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,7 +75,7 @@ class ClockPageState extends State<ClockPage> {
   }
 
   void getWorldTime() async {
-    if (await DataConnectionChecker().hasConnection == false) {
+    if (await InternetConnectionChecker().hasConnection == false) {
       choice = Choice.CurrentTime;
       return null;
     }
@@ -104,7 +105,7 @@ class ClockPageState extends State<ClockPage> {
   }
 
   dynamic checkConnection() async {
-    bool check = await DataConnectionChecker().hasConnection;
+    bool check = await InternetConnectionChecker().hasConnection;
     return check;
   }
 
@@ -169,12 +170,12 @@ class ClockPageState extends State<ClockPage> {
               children: <Widget>[
                 FancyButton(
                   onPress: () async {
-                    if (await DataConnectionChecker().hasConnection == true) {
+                    if (await InternetConnectionChecker().hasConnection == true) {
                       print('Has a Internet Connection');
                       choice = Choice.WorldTime;
                     } else {
                       choice = Choice.CurrentTime;
-                      _scaffoldKey.currentState.showSnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           duration: Duration(seconds: 3),
                           content: Text(
@@ -186,6 +187,8 @@ class ClockPageState extends State<ClockPage> {
                           ),
                         ),
                       );
+
+
                     }
                   },
                   label: getTextLocationName(locationName),
